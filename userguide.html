@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Cero Programming Language : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cero Programming Language</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/suncore/cero">View on GitHub</a>
+
+          <h1 id="project_title">Cero Programming Language</h1>
+          <h2 id="project_tagline">C++ uncluttered</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<a href="index.html">Start</a>
+<a href="userguide.html">Docs</a>
+<a href="community.html">Community</a>
+<a href="download.html">Download</a>
+
+
+
+
+<h2>Cero User Guide</h2>
+
+<h3>Indentation</h3>
+
+<p>In Cero, like in Python, indentation matters. All code must be correctly indented since this is used to infer placement of curly braces and semicolons. Currently, Cero supports only using 4 spaces as indentation.</p>
+
+<h3>Breaking long lines</h3>
+
+<p>Since Cero uses indentation to infer placement of curly braces and semicolons, line breaks of long lines can be problematic. Cero can detect line breaks that should NOT lead to insertion of curly braces and semicolons. If a line ends with one of the following characters</p>
+
+<pre><code>, - + * / &lt; &gt; &amp; | =
+</code></pre>
+
+<p>then Cero will treat it as breaking of a long line and not start of a new block.</p>
+
+<h3>No parentheses after for, if, while and switch</h3>
+
+<p>In Cero, it is not necessary to place parentheses around expression after for, if, while and switch. This is perfectly ok:</p>
+
+<pre><code>if n &lt; 5
+    a = 0
+</code></pre>
+
+<h3>Simplified variable definitions</h3>
+
+<p>C++11 introduces the auto keyword for variable definitions:</p>
+
+<pre><code>auto i = 0;
+</code></pre>
+
+<p>The type of i is inferred from the 0, and the above is equivalent to </p>
+
+<pre><code>int i = 0;
+</code></pre>
+
+<p>In Cero the auto keyword cam be omitted and the follwing syntax can be used (like in Go):</p>
+
+<pre><code>i := 0; // Note the added ":"
+</code></pre>
+
+<h3>Simplified for loops</h3>
+
+<p>The following cero code:</p>
+
+<pre><code>for i = 0..MAX
+</code></pre>
+
+<p>Is converted to</p>
+
+<pre><code>for (i = 0; i &lt; MAX; i++)
+</code></pre>
+
+<p>This is also allowed (note ":=" instead of "="):</p>
+
+<pre><code>for i := 0..MAX
+</code></pre>
+
+<p>Is converted to</p>
+
+<pre><code>for (auto i = 0; i &lt; MAX; i++)
+</code></pre>
+
+<h3>No header files</h3>
+
+<p>In Cero, the .h file and .cpp file are combined in the .ce file. The .h part is prefixed with a single line</p>
+
+<pre><code>+++ public
+</code></pre>
+
+<p>and the .cpp part is prefixed</p>
+
+<pre><code>+++ private
+</code></pre>
+
+<p>Both these are optional so a .ce file can contain only one or the other.</p>
+
+<h3>Modules, importing and the build system</h3>
+
+<p>A module in Cero is the .ce file. You can tell the compiler to make available the public functions of one module in another module using the import statement:</p>
+
+<pre><code>import module
+</code></pre>
+
+<p>This is compiled into</p>
+
+<pre><code>#include "module.h"
+</code></pre>
+
+<p>Even though this may seem unnecessary, the import keyword is important to let the build system find dependencies. When cero builds a file it will search for imported modules and build those first, recursively if necessary. The build system will avoid building if the resulting file is newer than the source.</p>
+
+<h3>No forward declarations</h3>
+
+<p>Declarations of functions can be copied to a different part of the .ce file prefixing the definition with + or - and then using the "+decl" or "-decl" keywords. Declarations prefixed by "-" will also be declared static. For example, the following Cero code:</p>
+
+<p>main.ce file:</p>
+
+<pre><code>+++ public
++decl
++++ private
+import main
+-decl
++void PublicFunction(int i)
+PrivateFunction(5+i)
+-void PrivateFunction(int i)
+cout &lt;&lt; i
+</code></pre>
+
+<p>will be compiled to this C++ code:</p>
+
+<p>main.h file:</p>
+
+<pre><code>void PublicFunction(int i);
+</code></pre>
+
+<p>main.cpp file:</p>
+
+<pre><code>#include "main.h"
+static void PrivateFunction(int i);
+void PublicFunction(int i)
+{  PrivateFunction(5+i); }
+-void PrivateFunction(int i)
+{ cout &lt;&lt; i; }
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
