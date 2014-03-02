@@ -69,7 +69,7 @@ Even though this may seem unnecessary, the import keyword is important to let th
 
 ### No forward declarations
 
-Declarations of functions can be copied during compile time to a different part of the .ce file prefixing the definition with "+" or "-" and then using the "[+decl]" or "[-decl]" keywords. Declarations prefixed by "-" will also be declared static. For example, the following Cero code:
+Declarations of functions can be copied during compile time to a different part of the .ce file by prefixing the definition with "+" or "-" and then using the "[+decl]" or "[-decl]" keywords. Declarations prefixed by "-" will also be declared static. For example, the following Cero code:
 
 main.ce file:
 
