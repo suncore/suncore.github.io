@@ -57,9 +57,9 @@
 
 <p>File myprint.ce:</p>
 
-<pre><code>+++ public
-+decl
-+++ private
+<pre><code>[public]
+[+decl]
+[private]
 #include &lt;iostream&gt;
 #include &lt;string&gt;
 +void myprint(std::string s)
@@ -68,10 +68,10 @@
 
 <p>File main.ce:</p>
 
-<pre><code>+++ private
+<pre><code>[private]
 #include &lt;string&gt;
 import myprint
--decl
+[-decl]
 int main(int argc, char *argv[])
     s := hello()
     for i := 0..5

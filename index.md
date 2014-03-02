@@ -19,9 +19,9 @@ Cero has the following modifications compared to C++:
 
 File myprint.ce:
 
-    +++ public
-    +decl
-    +++ private
+    [public]
+    [+decl]
+    [private]
     #include <iostream>
     #include <string>
     +void myprint(std::string s)
@@ -29,10 +29,10 @@ File myprint.ce:
 
 File main.ce:
 
-    +++ private
+    [private]
     #include <string>
     import myprint
-    -decl
+    [-decl]
     int main(int argc, char *argv[])
         s := hello()
         for i := 0..5

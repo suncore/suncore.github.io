@@ -47,11 +47,11 @@ This is compiled to
 
 In Cero, the .h file and .cpp file are combined in the .ce file. The .h part is prefixed with a single line
 
-    +++ public
+    [public]
 
 and the .cpp part is prefixed
 
-    +++ private 
+    [private] 
 
 Both these are optional so a .ce file can contain only one or the other.
 
@@ -69,16 +69,16 @@ Even though this may seem unnecessary, the import keyword is important to let th
 
 ### No forward declarations
 
-Declarations of functions can be copied during compile time to a different part of the .ce file prefixing the definition with "+" or "-" and then using the "+decl" or "-decl" keywords. Declarations prefixed by "-" will also be declared static. For example, the following Cero code:
+Declarations of functions can be copied during compile time to a different part of the .ce file prefixing the definition with "+" or "-" and then using the "[+decl]" or "[-decl]" keywords. Declarations prefixed by "-" will also be declared static. For example, the following Cero code:
 
 main.ce file:
 
-    +++ public
-    +decl
-    +++ private
+    [public]
+    [+decl]
+    [private]
     #include <iostream>
     import main
-    -decl
+    [-decl]
     +void PublicFunction(int i)
         PrivateFunction(5+i)
     -void PrivateFunction(int i)
