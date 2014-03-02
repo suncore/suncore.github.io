@@ -20,26 +20,28 @@ Cero has the following modifications compared to C++:
 File myprint.ce:
 
     +++ public
-    // This part becomes the .h file
-    +decl // declarations preceded by a + sign end up here
+    +decl
     +++ private
-    // This part becomes the .cpp file
-    #include 
-    +void myprint(string s)
+    #include <iostream>
+    #include <string>
+    +void myprint(std::string s)
         std::cout << s
 
 File main.ce:
 
     +++ private
+    #include <string>
     import myprint
-    -decl // declarations preceded by a - sign end up here, declared as "static"
+    -decl
     int main(int argc, char *argv[])
         s := hello()
         for i := 0..5
             myprint(s)
         
-    -string hello()
-        return "Hello World"
+    -std::string hello()
+        return "Hello World\n"
+
+In Cero, the public (.h) and private (.cpp) parts of a module is combined in one file. Declarations in a module that are private or should be exported can be prefixed with - or +.
 
 Building:
 
