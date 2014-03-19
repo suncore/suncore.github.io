@@ -1,8 +1,10 @@
 ## Cero Development
 
-You are welcome to participate in Cero development. Discussions are held in the forum (see Community link) and the sources are on GitHub (see top blue "View on GitHub" link).
+You are welcome to participate in Cero development. Sources are on GitHub (see top blue "View on GitHub" link).
 
-Some serious effort is needed in the tooling domain, such as support in Eclipse, Kdevelop etc.
+Effort is needed in the tooling domain, such as support in Eclipse, Kdevelop etc.
+
+If you want to contact the author of Cero, send me a mail at [henrik@harmsen.se](mailto:henrik@harmsen.se)
 
 ### Building
 
