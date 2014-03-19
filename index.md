@@ -14,6 +14,7 @@ Cero has the following modifications compared to C++:
 * No forward declarations
 * Variable creation simplfied: "auto i = 0" can be written as "i := 0"
 * Built-in build system. Makefiles are not needed.
+* No need for #ifndef/#define/#endif for headers to avoid multiple includes
 
 ###Example
 
