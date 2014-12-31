@@ -1,5 +1,25 @@
 ## The Cero Programming Language
 
+
+Ugly:
+
+    static int foobar(int arg, int a[])
+    {
+        int i;
+        for (i = 0; i < arg; i++)
+        {
+            c += a[i];
+        }
+        return c;
+    }
+
+Pretty:
+
+    - int foobar(int arg, int a[])
+        for i := 0..arg
+            c += a[i]
+        return c
+
 Cero is a slightly modified version of C++. By making a few small changes to the base language removing unneeded clutter, the code becomes a lot easier to read and maintain. Some additional features have been added, in an effort to modernize the language, like e.g. a built-in build system that derives build order and dependencies from the code itself. Most of the changes and additions are optional to allow easy transition from C++. A converter from C++ to Cero code is included.
 
 Cero compiles into C++11 and is fully compatible with C/C++ code. Currently it is in beta phase and is supported only on Linux. To build and test, visit the github page to download the code. Just run make to build.
